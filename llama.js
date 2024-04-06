@@ -146,11 +146,10 @@ function getPlatform() {
 }
 
 function getBinariesPath() {
-  const IS_PROD = process.env.NODE_ENV !== 'development';
   const { isPackaged } = app;
 
   const binariesPath =
-    IS_PROD && isPackaged
+    isPackaged
       ? path.join(process.resourcesPath, 'bin')
       : path.join(app.getAppPath(), 'resources', getPlatform(), "bin");
 
