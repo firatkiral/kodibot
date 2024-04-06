@@ -1173,7 +1173,7 @@ window.electronAPI.getAssistants().then(assistants => {
   window.electronAPI.getApp().then(appDoc => {
     appState.set(appDoc);
     if (!appDoc.termsAccepted) {
-      fetch("terms.md").then(res => res.text()).then(terms => {
+      fetch("terms-and-conditions.md").then(res => res.text()).then(terms => {
         app.confirmationModal.open(
           "Terms and Conditions",
           terms,
