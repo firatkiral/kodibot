@@ -18,7 +18,7 @@ If you create a new local assistant, you can choose the default model file or yo
 
 ### Using OpenAI API
 
-You can use OpenAI API by creating an API key from [OpenAI](https://openai.com/). You can then add your API key to assistant settings. If your api key is valid it will automatically load avalable chat models such as GPT-3, GPT-4, etc. You can choose a model of your choice and start chatting with your assistant. You can also customize instructions for your specific task.
+With OpenAi API you can use latest Chat GPT models without paying monthly subscription fees, you only pay for what you use with a pay-as-you-go pricing. You can use OpenAI API by creating an API key from [OpenAI](https://openai.com/). Then you can add your API key to assistant settings. If your api key is valid it will automatically load available chat models such as GPT-3, GPT-4, etc. You can choose a model of your choice and start chatting with your assistant. You can also customize instructions for your specific task. 
 
 ### Usage
 
@@ -34,7 +34,12 @@ Then run the app:
 npm start
 ```
 
+### Custom API Calls
+
+When you select an assistant card, it will automatically start an API server on the API URL and port specified in the assistant settings. You can use this URL to make custom API calls to the assistant. Please see the [Llama.cpp API](https://github.com/ggerganov/llama.cpp/tree/master/examples/server) documentation for more information.
+
 ## License
+
 KodiBot Copyright © 2024
 
 KodiBot is free software: you can redistribute it and/or modify
