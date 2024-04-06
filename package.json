@@ -1,0 +1,17 @@
+{
+  "name": "kodibot",
+  "version": "1.0.0",
+  "description": "AI chatbot",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Firat Kiral",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^29.1.5"
+  },
+  "dependencies": {
+    "controldb": "^1.0.19"
+  }
+}
