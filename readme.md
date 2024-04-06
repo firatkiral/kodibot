@@ -8,13 +8,13 @@ KodiBot is free and open source app developed using electronjs framework and rel
 
 ### Features
 
-KodiBot has a simple and user friendly interface. You can esily create chat assistant cards and customize them for specific tasks or topics by adding them instructions. You can save cards to JSON file share them with others. KodiBot supports both Llama.cpp compatible models and OpenAI API. It stores your history with each chat assistant separately. You can easily navigate and switch between chat assistants from the sidebar.
+KodiBot has a simple and user friendly interface. You can esily create chat assistant cards and customize them for specific tasks or topics by adding instructions. You can save cards to JSON file share them with others. KodiBot supports both Llama.cpp compatible models and OpenAI API. It stores your history with each chat assistant separately. You can easily navigate and switch between chat assistants from the sidebar.
 
 ### Creating Local Assistant
 
 You can either duplicate an existing KodiBot assistant card or create a new one. If you duplicate KodiBot Assistant, you can simply customize the instructions for your specific task or topic. 
 
-If you create a new local assistant, you can choose the default model file or you can download any llama.cpp compatible model from [huggingface.co](https://huggingface.co). You'll also need to add proper prompt and history template for the model you choose. You can leave other advanced settings as default.
+If you create a new local assistant, you can choose the default model file or you can download any llama.cpp compatible model from [huggingface.co](https://huggingface.co). You'll also need to add prompt and history template to be able to feed proper prompt to the model you choose. You can find these information in the model's documentation. You can leave other advanced settings as default.
 
 ### Using OpenAI API
 

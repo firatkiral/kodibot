@@ -192,7 +192,7 @@ class AssistantCard extends Column {
           )
         )
       ),
-      new DropdownLink().expose("dropdownButton", this).hide().setColor("light").setContent(new Icon("three-dots-vertical")).setPositioning("absolute").setPosition({ top: .5, right: .5 }, "em").addChildren(
+      new DropdownLink().expose("dropdownButton", this).setColor("light").setContent(new Icon("three-dots-vertical")).setPositioning("absolute").setPosition({ top: .5, right: .5 }, "em").addChildren(
         new DropdownItem().setContent(new Row().setGap(10).addChildren(new Icon("copy"), new Text("Duplicate"))).onClick((self, e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -205,13 +205,13 @@ class AssistantCard extends Column {
           this.dropdownButton.close()
           onAssistantSaveButtonClick(assistant)
         }),
-        new DropdownItem().setContent(new Row().setGap(10).addChildren(new Icon("pencil-square"), new Text("Edit"))).onClick((self, e) => {
+        new DropdownItem().expose("editButton", this).hide().setContent(new Row().setGap(10).addChildren(new Icon("pencil-square"), new Text("Edit"))).onClick((self, e) => {
           e.preventDefault();
           e.stopPropagation();
           this.dropdownButton.close()
           onAssistantEditButtonClick(assistant)
         }),
-        new DropdownItem().setContent(new Row().setGap(10).addChildren(new Icon("trash"), new Text("Delete"))
+        new DropdownItem().expose("deleteButton", this).hide().setContent(new Row().setGap(10).addChildren(new Icon("trash"), new Text("Delete"))
         ).onClick((self, e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -243,10 +243,12 @@ class AssistantCard extends Column {
 
   setEditable(val = true) {
     if (val) {
-      this.dropdownButton.show()
+      this.editButton.show()
+      this.deleteButton.show()
     }
     else {
-      this.dropdownButton.hide()
+      this.editButton.hide()
+      this.deleteButton.hide()
     }
     return this;
   }
