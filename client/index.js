@@ -69,7 +69,7 @@ class AppUI extends App {
                   new Column().expose("chatContainer", this).setGap(20).justifyItems("start").setOverflow("auto")
                 ),
                 new Row().stretchY("none").justifyItems("center").setGap(20).setPositioning("relative").addChildren(
-                  new Button().expose("sendButton", this).setContent(new Icon("send")).setPositioning("absolute").onClick(onSendButtonClick).setPosition({ right: 1, bottom: .5 }, "rem").apply(self => {
+                  new Button().expose("sendButton", this).disable().setContent(new Icon("send")).setPositioning("absolute").onClick(onSendButtonClick).setPosition({ right: .5, bottom: .5 }, "rem").apply(self => {
                     self.setBusy = (val = true) => {
                       if (val) {
                         self.onClick(onAbortResponseClick).getChild(0).setIcon("stop");
@@ -80,13 +80,29 @@ class AppUI extends App {
                       return this
                     };
                   }),
-                  new Input("textarea").expose("userInput", this).addSpacing("p-3").setAutocapitalize("off").setPlaceholder("Type a message...").setStyle("resize", "none").setStyle("overflow-y", "auto").setAttribute("rows", "1").onInput((val, self) => {
-                    self.setAttribute("rows", `${Math.min(val.split('\n').length, 5)}`);
+                  new Input("textarea").expose("userInput", this).addSpacing("p-3", "pe-5").setAutocapitalize("off").setMaxHeight(202).setPlaceholder("Type a message...").setStyle("resize", "none").setStyle("overflow-y", "auto").setAttribute("rows", "1").onInput((val, self) => {
+                    self.resize();
+                    if (!!val.trim()) {
+                      this.sendButton.enable()
+                    }
+                    else {
+                      this.sendButton.disable()
+                    }
                   }).addEventListener("keydown", (e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
                       e.preventDefault();
                       this.sendButton.click();
                     }
+                  }).apply(self => {
+                    self.resize = () => {
+                      self.setHeight(1);
+                      self.setHeight(2 + self.getScrollHeight())
+                      return self;
+                    }
+                    self.clear = () => {
+                      self.setValue("").resize();
+                      return self;
+                    };
                   }),
                 )
               ),
@@ -335,9 +351,10 @@ class ChatBubble extends Column {
     super();
     this.stretchY("none").alignItems(role === "user" ? "end" : "start").addChildren(
       new Column().stretch("none", "none").setStyle("background-color", role === "user" ? accentShades[0] : bgShades[1]).setRound(3).addSpacing("px-3").addChildren(
-        new Markdown(message).expose("textInput", this).setStyle("color", textShades[role === "user" ? 0 : 1]),
+        new Markdown().expose("textInput", this).setStyle("color", textShades[role === "user" ? 0 : 1]),
       )
     );
+    message && this.setText(message);
   }
 
   setText(message) {
@@ -811,7 +828,7 @@ class EditOpenaiAssistantModal extends Modal {
     this.frequency_penalty.setValue(assistant?.params.frequency_penalty ?? "1.18");
     if (assistant) {
       window.electronAPI.getOpenaiModels(assistant.params.api_key).then(models => {
-        if(models.length){
+        if (models.length) {
           const idx = models.indexOf(assistant.modelFile);
           this.modelFileSelectionBox.setItems(models, idx)
         }
@@ -1016,8 +1033,7 @@ async function onSendButtonClick() {
       currentChat = { title: message.substr(0, 50) + "...", messages: [] };
       chatState.set(currentChat);
     }
-    app.userInput.setValue("");
-    app.userInput.setAttribute("rows", `1`);
+    app.userInput.clear();
     const responseBubble = new ChatBubble("...", "assistant");
     chatContainer.addChildren(new ChatBubble(message, "user"), responseBubble);
     responseBubble.scrollIntoView();

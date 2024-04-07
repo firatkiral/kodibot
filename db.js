@@ -25,7 +25,7 @@ var db = new controldb(dbPath + '/db.json', {
     adapter: new lfsa(),
     verbose: true,
     autosave: true,
-    autosaveInterval: 5000,
+    autosaveInterval: 500,
     serializationMethod: 'normal',
 });
 
