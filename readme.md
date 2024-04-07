@@ -1,4 +1,4 @@
-![KodiBot](https://github.com/firatkiral/kodibot/blob/main/client/images/screenshot.png?raw=true)
+![KodiBot](https://kodibot.com/assets/images/screenshot-7789f673756b43b7bfb8af5c207600ec.png)
 
 ### KodiBot - A Local Chatbot App for Desktop
 
