@@ -815,8 +815,10 @@ class EditOpenaiAssistantModal extends Modal {
     this.frequency_penalty.setValue(assistant?.params.frequency_penalty ?? "1.18");
     if (assistant) {
       window.electronAPI.getOpenaiModels(assistant.params.api_key).then(models => {
-        const idx = models.indexOf(assistant.modelFile);
-        this.modelFileSelectionBox.setItems(models, idx)
+        if(models.length){
+          const idx = models.indexOf(assistant.modelFile);
+          this.modelFileSelectionBox.setItems(models, idx)
+        }
       }).catch(() => { });
     }
     else {
