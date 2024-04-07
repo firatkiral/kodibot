@@ -162,6 +162,8 @@ async function ask(message, history, assistant, callback, controller) {
       let prompt = buildPrompt(message, history, assistant);
       let _params = {
         ...assistant.params,
+        n_probs: 0,
+        min_keep: 0,
         stop: buildStop(assistant),
         cache_prompt: true,
         grammar: '',

@@ -163,8 +163,6 @@ app.whenReady().then(async val => {
                     mirostat: +newAssistant.mirostat,
                     mirostat_tau: +newAssistant.mirostat_tau,
                     mirostat_eta: +newAssistant.mirostat_eta,
-                    n_probs: +newAssistant.n_probs,
-                    min_keep: +newAssistant.min_keep,
                 }
             });
         }
@@ -247,8 +245,6 @@ app.whenReady().then(async val => {
                     mirostat: +newAssistant.mirostat,
                     mirostat_tau: +newAssistant.mirostat_tau,
                     mirostat_eta: +newAssistant.mirostat_eta,
-                    n_probs: +newAssistant.n_probs,
-                    min_keep: +newAssistant.min_keep
                 }
             });
         }

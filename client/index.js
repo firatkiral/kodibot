@@ -636,8 +636,6 @@ class EditLlamaAssistantModal extends Modal {
               new FormInput("Mirostat", "text", "mirostat", "Mirostat", true).expose("mirostat", this),
               new FormInput("Mirostat tau", "text", "mirostat_tau", "Mirostat tau", true).expose("mirostat_tau", this),
               new FormInput("Mirostat eta", "text", "mirostat_eta", "Mirostat eta", true).expose("mirostat_eta", this),
-              new FormInput("Show Probabilities", "text", "n_probs", "Show Probabilities", true).expose("n_probs", this),
-              new FormInput("Min Probabilities from each Sampler", "text", "min_keep", "Min Probabilities from each Sampler", true).expose("min_keep", this),
             ))
           )
         )
@@ -699,8 +697,6 @@ class EditLlamaAssistantModal extends Modal {
     this.mirostat.setValue(assistant?.params.mirostat ?? "0");
     this.mirostat_tau.setValue(assistant?.params.mirostat_tau ?? "5");
     this.mirostat_eta.setValue(assistant?.params.mirostat_eta ?? "0.1");
-    this.n_probs.setValue(assistant?.params.n_probs ?? "0");
-    this.min_keep.setValue(assistant?.params.min_keep ?? "0");
     window.electronAPI.getModels().then(models => {
       if (models.length) {
         const idx = models.indexOf(assistant?.modelFile ?? "luna-ai-llama2-uncensored.Q4_K_M.gguf");
