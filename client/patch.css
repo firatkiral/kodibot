@@ -10,36 +10,6 @@
     display: none;
 }
 
-.home-wrapper::before {
-    content: "";
-    display: block;
-    background-image: url(./images/waves-bg-top.svg);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-position: left top;
-    height: 25%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    opacity: .03;
-    pointer-events: none; 
-}
-
-.home-wrapper::after {
-    content: "";
-    display: block;
-    background-image: url(./images/waves-bg-bot.svg);
-    background-size: 100% 100%;
-    height: 30%;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-    background-repeat: no-repeat;
-    background-position: right bottom;
-    opacity: .03;
-    pointer-events: none; 
-}
-
 .markdown pre {
     background: #f8f9fa !important;
     border-radius: 0.4rem !important;
