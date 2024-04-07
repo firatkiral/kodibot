@@ -72,7 +72,6 @@ app.whenReady().then(async val => {
 
             if (mainWindow.llamaServer) {
                 mainWindow.llamaServer.kill();
-                console.log("Killing existing server");
                 mainWindow.llamaServer = null;
             }
 

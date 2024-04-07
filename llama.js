@@ -11,7 +11,7 @@ async function startLlamaServer(api_url, modelFilePath, mainWindow) {
   return new Promise((resolve, reject) => {
     try {
       const serverPath = path.resolve(path.join(getBinariesPath(), './server'));
-      mainWindow.server = spawn(serverPath, ["-m", modelFilePath, "-c", "2048", "--port", "11465"]);
+      mainWindow.llamaServer = spawn(serverPath, ["-m", modelFilePath, "-c", "2048", "--port", "11465"]);
       // server.stdout.on('data', (data) => {
       //   console.log(`stdout: ${data}`);
       // });
@@ -29,7 +29,7 @@ async function startLlamaServer(api_url, modelFilePath, mainWindow) {
         fetch(api_url, { method: 'GET' })
           .then(response => {
             if (response.status == 200) {
-              return resolve(mainWindow.server);
+              return resolve(mainWindow.llamaServer);
             }
             throw new Error('Could not connect to server.');
           })
