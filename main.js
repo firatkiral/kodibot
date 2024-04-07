@@ -72,11 +72,12 @@ app.whenReady().then(async val => {
 
             if (mainWindow.llamaServer) {
                 mainWindow.llamaServer.kill();
+                console.log("Killing existing server");
                 mainWindow.llamaServer = null;
             }
 
             await new Promise(resolve => setTimeout(resolve, 1000));
-            return llama.startLlamaServer(assistant.params.api_url, modelFilePath).then(llamaServer => {
+            return llama.startLlamaServer(assistant.params.api_url, modelFilePath, mainWindow).then(llamaServer => {
                 mainWindow.llamaServer = llamaServer;
                 return "initialized";
             })
