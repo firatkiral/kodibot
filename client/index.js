@@ -1107,18 +1107,19 @@ async function onAssistantDuplicateButtonClick(assistant) {
 
 async function onAssistantSaveButtonClick(assistant) {
   if (assistant) {
-    delete assistant["$ctrl"]
-    delete assistant.meta
-    delete assistant.id
-    delete assistant.editable
+    const _assistant = { ...assistant };
+    delete _assistant["$ctrl"]
+    delete _assistant.meta
+    delete _assistant.id
+    delete _assistant.editable
 
-    const assistantFile = JSON.stringify(assistant, null, 2);
+    const assistantFile = JSON.stringify(_assistant, null, 2);
     const blob = new Blob([assistantFile], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     // create download link
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${assistant.name}.json`;
+    a.download = `${_assistant.name}.json`;
     a.click();
   }
 }

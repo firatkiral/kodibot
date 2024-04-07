@@ -108,7 +108,7 @@ app.whenReady().then(async val => {
         }
         const newAssistant = {
             ...assistant,
-            id: null,
+            id: undefined,
             editable: true,
             name: assistant.name + " (copy)",
         };
