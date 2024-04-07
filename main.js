@@ -412,7 +412,7 @@ async function saveDatabase() {
 async function cleanup() {
     return new Promise(async (resolve, reject) => {
         try {
-            mainWindow.server && server.kill();
+            mainWindow.llamaServer && mainWindow.llamaServer.kill();
             mainWindow.abortController && mainWindow.abortController.abort("Aborted by user")
             resolve();
         } catch (error) {
