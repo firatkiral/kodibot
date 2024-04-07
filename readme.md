@@ -6,7 +6,7 @@ KodiBot is a desktop app that enables users to run their own AI chat assistants 
 
 KodiBot is free and open source app developed using electronjs framework and released under the GNU General Public License.
 
-Please visit [kodibot.com](https://firatkiral.github.io/kodibot/) for more information.
+Please visit [kodibot.com](https://kodibot.com) for more information.
 
 ### Features
 
