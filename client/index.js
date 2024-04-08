@@ -278,6 +278,7 @@ class AssistantCard extends Column {
     return this;
   }
   enable() {
+    super.enable();
     this.setPointerInteraction("auto").setTextColor("light");
     return this;
   }

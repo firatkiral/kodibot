@@ -10,7 +10,7 @@ const fs = require("fs");
 async function startLlamaServer(api_url, modelFilePath, mainWindow) {
   return new Promise((resolve, reject) => {
     try {
-      const serverPath = path.resolve(path.join(getBinariesPath(), './server'));
+      const serverPath = path.resolve(getBinaries());
       mainWindow.llamaServer = spawn(serverPath, ["-m", modelFilePath, "-c", "2048", "--port", "11465"]);
       // server.stdout.on('data', (data) => {
       //   console.log(`stdout: ${data}`);
@@ -145,7 +145,7 @@ function getPlatform() {
   }
 }
 
-function getBinariesPath() {
+function getBinaries() {
   const { isPackaged } = app;
 
   const binariesPath =
@@ -153,7 +153,9 @@ function getBinariesPath() {
       ? path.join(process.resourcesPath, 'bin')
       : path.join(app.getAppPath(), 'resources', getPlatform(), "bin");
 
-  return binariesPath;
+  const executable = getPlatform() === 'win' ? 'server.exe' : 'server';
+
+  return path.join(binariesPath, executable);
 }
 
 async function ask(message, history, assistant, callback, controller) {
