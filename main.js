@@ -76,8 +76,7 @@ app.whenReady().then(async val => {
             }
 
             await new Promise(resolve => setTimeout(resolve, 1000));
-            return llama.startLlamaServer(assistant.params.api_url, modelFilePath, mainWindow).then(llamaServer => {
-                mainWindow.llamaServer = llamaServer;
+            return llama.startLlamaServer(assistant.params.api_url, modelFilePath, mainWindow).then(() => {
                 return "initialized";
             })
         }

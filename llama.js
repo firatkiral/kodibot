@@ -29,7 +29,7 @@ async function startLlamaServer(api_url, modelFilePath, mainWindow) {
         fetch(api_url, { method: 'GET' })
           .then(response => {
             if (response.status == 200) {
-              return resolve(mainWindow.llamaServer);
+              return resolve();
             }
             throw new Error('Could not connect to server.');
           })

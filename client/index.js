@@ -197,6 +197,7 @@ class AppUI extends App {
 class AssistantCard extends Column {
   constructor(assistant) {
     super();
+    this.active = false;
     this.assistant = assistant;
     this.stretchY("none").setPositioning("relative").setStyle("background-color", bgShades[2]).addSpacing("p-4").setRound(4).setGap(20).setHeight(140).addChildren(
       new Row().setGap(20).alignItems("start").setCursor("pointer").addChildren(
@@ -252,6 +253,7 @@ class AssistantCard extends Column {
   }
 
   setActive(val = true) {
+    this.active = val;
     this.setStyle("background-color", val ? accentShades[0] : bgShades[2]);
     this.descriptionText.setTextColor(val ? "light" : "muted");
     return this;
@@ -266,6 +268,17 @@ class AssistantCard extends Column {
       this.editButton.hide()
       this.deleteButton.hide()
     }
+    return this;
+  }
+
+  disable() {
+    super.disable();
+    this.setPointerInteraction("none")
+    !this.active && this.setTextColor("muted");
+    return this;
+  }
+  enable() {
+    this.setPointerInteraction("auto").setTextColor("light");
     return this;
   }
 }
@@ -1225,7 +1238,9 @@ async function updateHistory(assistantId) {
 }
 
 async function initAssistant(assistantId) {
+  app.assistantPanel.disable();
   window.electronAPI.initAssistant(assistantId).then(res => {
+    app.assistantPanel.enable();
     if (res === "download-model") {
       if (navigator.onLine) {
         app.confirmationModal.open("Download AI Model", "AI model needs to be downloaded before it can be used for the first time. Do you want to download it now?",
@@ -1277,6 +1292,7 @@ async function initAssistant(assistantId) {
       return app.addAlert("Error initializing assistant", "danger");
     }
   }).catch(err => {
+    app.assistantPanel.enable();
     if (err.message.includes("missing-model")) {
       app.alertPopup.addAlert("AI model missing, please add a model from the assistant settings", "warning");
     }
