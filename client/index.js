@@ -277,6 +277,7 @@ class AssistantCard extends Column {
     !this.active && this.setTextColor("muted");
     return this;
   }
+
   enable() {
     super.enable();
     this.setPointerInteraction("auto").setTextColor("light");
@@ -364,8 +365,8 @@ class ChatBubble extends Column {
   constructor(message, role = "user") {
     super();
     this.stretchY("none").alignItems(role === "user" ? "end" : "start").addChildren(
-      new Column().stretch("none", "none").setStyle("background-color", role === "user" ? accentShades[0] : bgShades[1]).setRound(3).addSpacing("px-3").addChildren(
-        new Markdown().expose("textInput", this).setStyle("color", textShades[role === "user" ? 0 : 1]),
+      new Column().stretch("none", "none").alignItems("start").setMinWidth(60).setStyle("background-color", role === "user" ? accentShades[0] : bgShades[1]).setRound(3).addSpacing("px-3").addChildren(
+        new Markdown().expose("textInput", this).setStyle("color", textShades[role === "user" ? 0 : 1])
       )
     );
     message && this.setText(message);
@@ -1048,12 +1049,17 @@ async function onSendButtonClick() {
       chatState.set(currentChat);
     }
     app.userInput.clear();
-    const responseBubble = new ChatBubble("...", "assistant");
+    const responseBubble = new ChatBubble(".", "assistant");
     chatContainer.addChildren(new ChatBubble(message, "user"), responseBubble);
     responseBubble.scrollIntoView();
     PR.prettyPrint();
     let responseText = "";
+    let counter = 0;
+    let interval = setInterval(() => {
+      responseBubble.setText(([".", "..", "..."])[counter++ % 3]);
+    }, 500);
     window.electronAPI.onRespond((response) => {
+      interval && clearInterval(interval);
       responseText += response;
       responseBubble.setText(responseText);
       const chatPanelDom = chatContainer.getDom();
