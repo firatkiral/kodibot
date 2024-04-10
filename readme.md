@@ -1,6 +1,6 @@
 ![KodiBot](https://kodibot.com/assets/images/screenshot-7789f673756b43b7bfb8af5c207600ec.png)
 
-### KodiBot - A Local Chatbot App for Desktop
+### KodiBot - Local Chatbot App for Desktop
 
 KodiBot is a desktop app that enables users to run their own AI chat assistants locally and offline on Windows, Mac, and Linux operating systems. KodiBot is a standalone app and does not require an internet connection or additional dependencies to run local chat assistants. It supports both [Llama.cpp](https://github.com/ggerganov/llama.cpp) compatible models and [OpenAI](https://openai.com/) API. 
 
